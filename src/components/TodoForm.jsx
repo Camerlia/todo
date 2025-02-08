@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import Board from "./Block";
 import Task from "./Task";
@@ -15,17 +15,19 @@ const TodoForm = () => {
     "Saturday",
   ];
 
-  const initialValue = [
-    {
-      title: "Go for Fishing",
-      description: "I need to buy some fishing hook and net.",
-      checked: false,
-    },
-  ];
   const [isDate, setDate] = useState(new Date());
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [details, setDetails] = useState(initialValue);
+  const [details, setDetails] = useState(() => {
+    const savedDetails = localStorage.getItem("tasks");
+    return savedDetails ? JSON.parse(savedDetails) : [
+      {
+        title: "Go for Fishing",
+        description: "I need to buy some fishing hook and net.",
+        checked: false,
+      },
+    ];
+  });
   const [inputText, setInputText] = useState("");
 
   const filteredDetails = details.filter((detail) =>
@@ -52,6 +54,9 @@ const TodoForm = () => {
     };
     setDetails((prev) => [...prev, newItem]);
   };
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(details));
+  }, [details]);
 
   function handleSubmit(e) {
     e.preventDefault();

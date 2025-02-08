@@ -21,22 +21,27 @@ const Footer = () => {
         © 2025 Camelia. All Rights Reserved.
       </p>
       <div className={`flex flex-row gap-3`}>
-        <img
-          className={"w-8 h-8 cursor-pointer"}
-          src={facebook}
-          alt={`facebook`}
-        />
+             
+        <a href="https://github.com/Camerlia/">
         <img className={"w-8 h-8 cursor-pointer"} src={github} alt={`github`} />
+        </a>
+        
+        <a href="www.linkedin.com/in/camelia-afolabi">
         <img
           className={"w-8 h-8 cursor-pointer"}
           src={linkedin}
           alt={`linkedin`}
         />
+        </a>
+       
+        <a href="https://x.com/camelia_flow?s=21">
         <img
           className={"w-8 h-8 cursor-pointer"}
           src={twitter}
           alt={`twitter`}
         />
+        </a>
+        
       </div>
     </footer>
   );
